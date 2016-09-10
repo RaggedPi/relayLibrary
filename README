@@ -1,0 +1,10 @@
+RaggedPi Project
+Relay Library
+
+Small fun relay library.  Uneccesary, but makes things look cleaner!
+
+Features:
+- Turn relays on or off
+- Toggle relay states
+- Autonomous instances for each relay
+- Relay state verification
