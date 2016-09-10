@@ -10,48 +10,37 @@
 /**
  * Constructor
  */
-Relay::Relay(int RelayNm, int state)
-{
-  if (1 == RelayNm)  relayPin = RELAY1PIN;
-  if (2 == RelayNm)  relayPin = RELAY2PIN;
-  if (3 == RelayNm)  relayPin = RELAY3PIN; 
-  if (4 == RelayNm)  relayPin = RELAY4PIN; 
-  pinMode(relayPin, OUTPUT); 
+Relay::Relay(uint8_t pin, uint8_t state) {
+  _pin=pin;
+  _state=state;
+}
 
-  if (LOW == state) {
-    relayState = LOW; 
-    off(); 
-  } 
-  else {
-    relayState = HIGH;
-    on(); 
-  }
+void Relay::begin() {
+  pinMode(_pin, OUTPUT);
+  state(_state);
 }
 
 /**
  * Turn relay on
  */
-void Relay::on() 
-{
-  digitalWrite(relayPin, HIGH); 
-  relayState=HIGH; 
+void Relay::on() {
+  digitalWrite(_pin, HIGH); 
+  _state=HIGH; 
 }
 
 /**
  * Turn relay off
  */
-void Relay::off()
-{
-  digitalWrite(relayPin, LOW); 
-  relayState = LOW; 
+void Relay::off() {
+  digitalWrite(_pin, LOW); 
+  _state=LOW; 
 }
 
 /**
  * Toggle relay
  */
-void Relay::toggle()
-{
-  if (HIGH == relayState) {
+void Relay::toggle() {
+  if (HIGH==_state) {
     off(); 
   } 
   else {
@@ -63,34 +52,32 @@ void Relay::toggle()
  * Relay state
  * @return integer state
  */
-int Relay::state()
-{
-  return(relayState); 
+int Relay::state(uint8_t state) {
+  if (NULL!=state) { 
+      if (HIGH==state)  on();
+    else off();
+  }
+  return(_state);
 }
 
 /**
  * Relay on
  * @return integer
  */
-int Relay::isOn()
-{
-  if (relayState==HIGH) 
+int Relay::isOn() {
+  if (_state==HIGH) 
     return true; 
   else
     return false; 
 }
 
-// If the relay is off, returns true, otherwise returns false
 /**
  * Relay off
  * @return integer
  */
-int Relay::isOff()
-{
-  if (relayState==LOW) 
+int Relay::isOff() {
+  if (_state==LOW) 
     return true; 
   else
     return false; 
 }
-
-

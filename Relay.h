@@ -13,25 +13,27 @@
  #include "WProgram.h"
 #endif   
 
-#define RELAY1PIN 7
-#define RELAY2PIN 6
-#define RELAY3PIN 5
-#define RELAY4PIN 4
+// Define relay pins
+#define RELAY1 7
+#define RELAY2 6
+#define RELAY3 5
+#define RELAY4 4
 
 class Relay
 {
     public: 
-      Relay(int RelayNm, int state);                // Constructor 
+      Relay(uint8_t pin, uint8_t state=LOW);        // Constructor 
+      void begin();                                 // Initialization
       void on();                                    // Turn relay on 
       void off();                                   // Turn relay off
       void toggle();                                // Toggle relay state
-      int state();                                  // relay state
-      int isOn();                                   // boolean
-      int isOff();                                  // Returns TRUE if the relay is off, false otherwise 
+      int state(uint8_t state=NULL);                                  // relay state
+      int isOn();                                   // Returns true if relay is on
+      int isOff();                                  // Returns true if the relay is off
 
     private: 
-      int relayState;                               // relay state
-      int relayPin;                                 // arduino pin
+      uint8_t _state;                               // relay state
+      uint8_t _pin;                                 // arduino pin
 };
 
 #endif
