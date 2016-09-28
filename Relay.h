@@ -27,9 +27,9 @@ class Relay
       void on();                                    // Turn relay on 
       void off();                                   // Turn relay off
       void toggle();                                // Toggle relay state
-      int state(uint8_t state=NULL);                                  // relay state
-      int isOn();                                   // Returns true if relay is on
-      int isOff();                                  // Returns true if the relay is off
+      uint8_t state(uint8_t state=NULL);            // relay state
+      bool isOn();                                  // Returns true if relay is on
+      bool isOff();                                 // Returns true if the relay is off
 
     private: 
       uint8_t _state;                               // relay state

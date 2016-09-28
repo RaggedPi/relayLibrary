@@ -40,44 +40,34 @@ void Relay::off() {
  * Toggle relay
  */
 void Relay::toggle() {
-  if (HIGH==_state) {
-    off(); 
-  } 
-  else {
-    on(); 
-  }
+  _state = 1&~digitalRead(_pin);
+  digitalWrite(_pin, _state);  
 }
 
 /**
  * Relay state
  * @return integer state
  */
-int Relay::state(uint8_t state) {
-  if (NULL!=state) { 
-      if (HIGH==state)  on();
-    else off();
+uint8_t Relay::state(uint8_t state) {
+  if (NULL != state) { 
+      digitalWrite(_pin, state);
+      _state = state;      
   }
   return(_state);
 }
 
 /**
  * Relay on
- * @return integer
+ * @return bool
  */
-int Relay::isOn() {
-  if (_state==HIGH) 
-    return true; 
-  else
-    return false; 
+bool Relay::isOn() {
+  return (HIGH == digitalRead(_pin));
 }
 
 /**
  * Relay off
- * @return integer
+ * @return bool
  */
-int Relay::isOff() {
-  if (_state==LOW) 
-    return true; 
-  else
-    return false; 
+bool Relay::isOff() {
+  return (LOW == digitalRead(_pin));  
 }
