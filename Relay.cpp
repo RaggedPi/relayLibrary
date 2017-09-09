@@ -24,16 +24,16 @@ void Relay::begin() {
  * Turn relay on
  */
 void Relay::on() {
-  digitalWrite(_pin, HIGH); 
-  _state=HIGH; 
+  digitalWrite(_pin, ON); 
+  _state=ON; 
 }
 
 /**
  * Turn relay off
  */
 void Relay::off() {
-  digitalWrite(_pin, LOW); 
-  _state=LOW; 
+  digitalWrite(_pin, OFF); 
+  _state=OFF; 
 }
 
 /**
@@ -61,7 +61,7 @@ uint8_t Relay::state(uint8_t state) {
  * @return bool
  */
 bool Relay::isOn() {
-  return (HIGH == digitalRead(_pin));
+  return (ON == digitalRead(_pin));
 }
 
 /**
@@ -69,5 +69,5 @@ bool Relay::isOn() {
  * @return bool
  */
 bool Relay::isOff() {
-  return (LOW == digitalRead(_pin));  
+  return (OFF == digitalRead(_pin));  
 }

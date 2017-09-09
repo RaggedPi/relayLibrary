@@ -11,13 +11,20 @@
  #include "Arduino.h"
 #else
  #include "WProgram.h"
-#endif   
+#endif
 
 // Define relay pins
 #define RELAY1 7
 #define RELAY2 6
 #define RELAY3 5
 #define RELAY4 4
+
+// Define states
+/* Relay breakout boards tend to work opposite
+   than sometimes thought so this helps to
+   make it more universal via variable manipulation. */
+#define ON LOW
+#define OFF HIGH
 
 class Relay
 {
